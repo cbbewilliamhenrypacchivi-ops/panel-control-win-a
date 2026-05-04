@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adaptabilidad</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            background: linear-gradient(135deg, #EBE4DA 0%, #f5f1eb 100%);
+            color: #1D1D1B;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 50px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1D1D1B 0%, #808BC5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .back-btn {
+            background: white;
+            border: 2px solid #1D1D1B;
+            padding: 12px 24px;
+            cursor: pointer;
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.4s ease-out;
+            text-decoration: none;
+            color: #1D1D1B;
+        }
+
+        .back-btn:hover {
+            background: #808BC5;
+            border-color: #808BC5;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(128, 139, 197, 0.3);
+        }
+
+        .content {
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        .section {
+            background: white;
+            border: 2px solid #1D1D1B;
+            padding: 40px;
+            margin-bottom: 30px;
+            transition: all 0.4s ease-out;
+        }
+
+        .section:hover {
+            border-color: #808BC5;
+            box-shadow: 0 10px 30px rgba(128, 139, 197, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #808BC5;
+            font-weight: 700;
+        }
+
+        .section p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #1D1D1B;
+            margin-bottom: 15px;
+        }
+
+        .breakpoints {
+            margin-top: 25px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .breakpoint-card {
+            background: linear-gradient(135deg, #808BC5 0%, #5f6b9f 100%);
+            color: white;
+            padding: 20px;
+            border: 2px solid #1D1D1B;
+            text-align: center;
+            transition: all 0.4s ease-out;
+            animation: fadeInUp 0.6s ease-out backwards;
+        }
+
+        .breakpoint-card:nth-child(1) { animation-delay: 0.1s; }
+        .breakpoint-card:nth-child(2) { animation-delay: 0.2s; }
+        .breakpoint-card:nth-child(3) { animation-delay: 0.3s; }
+        .breakpoint-card:nth-child(4) { animation-delay: 0.4s; }
+
+        .breakpoint-card:hover {
+            transform: scale(1.08) rotateY(5deg);
+            box-shadow: 0 15px 40px rgba(128, 139, 197, 0.4);
+        }
+
+        .breakpoint-size {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .breakpoint-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            letter-spacing: 0.5px;
+        }
+
+        .features {
+            margin-top: 25px;
+        }
+
+        .feature-item {
+            background: #f5f1eb;
+            border-left: 4px solid #808BC5;
+            padding: 15px;
+            margin: 12px 0;
+            transition: all 0.3s ease-out;
+            animation: fadeInLeft 0.6s ease-out backwards;
+        }
+
+        .feature-item:nth-child(1) { animation-delay: 0.1s; }
+        .feature-item:nth-child(2) { animation-delay: 0.2s; }
+        .feature-item:nth-child(3) { animation-delay: 0.3s; }
+        .feature-item:nth-child(4) { animation-delay: 0.4s; }
+        .feature-item:nth-child(5) { animation-delay: 0.5s; }
+
+        .feature-item:hover {
+            background: #EBE4DA;
+            transform: translateX(8px);
+            border-left-color: #1D1D1B;
+        }
+
+        .feature-title {
+            font-weight: 700;
+            color: #1D1D1B;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .feature-desc {
+            font-size: 0.95rem;
+            color: #808BC5;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .section {
+                padding: 25px;
+            }
+
+            .breakpoints {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .breakpoint-card:hover {
+                transform: scale(1.05);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .breakpoints {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Adaptabilidad</h1>
+            <a href="index.html" class="back-btn">← Volver</a>
+        </header>
+
+        <div class="content">
+            <div class="section">
+                <h2>📱 Diseño Responsive</h2>
+                <p>Para este informe, el sitio se está utilizando y evaluando principalmente para <strong>escritorio</strong> (se prioriza la experiencia web en dispositivos de escritorio) y también para <strong>teléfonos móviles</strong> (no se prioriza la experiencia en tablets).</p>
+
+                <div class="breakpoints">
+                    <div class="breakpoint-card">
+                        <div class="breakpoint-size">💻</div>
+                        <div class="breakpoint-label">Escritorio</div>
+                        <div class="breakpoint-size" style="font-size: 1.2rem; margin-top: 8px;">901px+</div>
+                    </div>
+
+                    <div class="breakpoint-card">
+                        <div class="breakpoint-size">📱</div>
+                        <div class="breakpoint-label">Teléfono</div>
+                        <div class="breakpoint-size" style="font-size: 1.2rem; margin-top: 8px;">320px - 720px</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>🔧 Características Adaptables</h2>
+                <p>Características adaptables observadas en <a href="https://portfolywin-a.netlify.app/" target="_blank" rel="noopener noreferrer">https://portfolywin-a.netlify.app/</a>:</p>
+
+                <div class="features">
+                    <div class="feature-item">
+                        <div class="feature-title">✓ Menú responsive (≤ 900px)</div>
+                        <div class="feature-desc">En pantallas de 900px o menos se ocultan los enlaces del menú y se muestra un botón de despliegue (toggle) para navegación móvil.</div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-title">✓ Reflujo de tarjetas (≤ 720px)</div>
+                        <div class="feature-desc">El layout de tarjetas tipo “job-card” cambia a una sola columna para mejorar lectura y scroll vertical en teléfonos.</div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-title">✓ Contenedores fluidos</div>
+                        <div class="feature-desc">Se usan contenedores con anchos flexibles (por ejemplo, patrones tipo <em>width: min(..., 100%)</em>) para evitar desbordes y mantener márgenes consistentes.</div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-title">✓ Tipografía fluida</div>
+                        <div class="feature-desc">Se emplea tipografía responsiva (por ejemplo con <em>clamp()</em>) para mantener jerarquía y legibilidad entre escritorio y móvil.</div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-title">✓ Preferencias de accesibilidad</div>
+                        <div class="feature-desc">Existe soporte para <em>prefers-reduced-motion</em>, reduciendo animaciones y transiciones cuando el usuario lo solicita.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>🧪 Pruebas de Compatibilidad</h2>
+                <p>Se ha testeado la compatibilidad en navegadores principales: Chrome, Firefox, Safari, Edge. Además, se verifica en dispositivos reales y emuladores para garantizar la mejor experiencia posible en todas las plataformas.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Persona y Flujos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            background: linear-gradient(135deg, #EBE4DA 0%, #f5f1eb 100%);
+            color: #1D1D1B;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 50px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1D1D1B 0%, #808BC5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .back-btn {
+            background: white;
+            border: 2px solid #1D1D1B;
+            padding: 12px 24px;
+            cursor: pointer;
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.4s ease-out;
+            text-decoration: none;
+            color: #1D1D1B;
+        }
+
+        .back-btn:hover {
+            background: #808BC5;
+            border-color: #808BC5;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(128, 139, 197, 0.3);
+        }
+
+        .content {
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        .section {
+            background: white;
+            border: 2px solid #1D1D1B;
+            padding: 40px;
+            margin-bottom: 30px;
+            transition: all 0.4s ease-out;
+        }
+
+        .section:hover {
+            border-color: #808BC5;
+            box-shadow: 0 10px 30px rgba(128, 139, 197, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #808BC5;
+            font-weight: 700;
+        }
+
+        .persona-card {
+            background: #f5f1eb;
+            border: 2px solid #1D1D1B;
+            padding: 25px;
+            margin: 15px 0;
+            transition: all 0.4s ease-out;
+            animation: fadeInUp 0.6s ease-out backwards;
+        }
+
+        .persona-card:nth-child(2) { animation-delay: 0.1s; }
+        .persona-card:nth-child(3) { animation-delay: 0.2s; }
+
+        .persona-card:hover {
+            background: white;
+            border-color: #808BC5;
+            transform: translateX(10px);
+            box-shadow: 0 8px 20px rgba(128, 139, 197, 0.2);
+        }
+
+        .persona-header {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #1D1D1B;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .persona-detail {
+            margin: 8px 0;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: #808BC5;
+        }
+
+        .flujo-container {
+            margin-top: 25px;
+        }
+
+        .flujo-step {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            animation: fadeInLeft 0.6s ease-out backwards;
+        }
+
+        .flujo-step:nth-child(1) { animation-delay: 0.1s; }
+        .flujo-step:nth-child(2) { animation-delay: 0.2s; }
+        .flujo-step:nth-child(3) { animation-delay: 0.3s; }
+        .flujo-step:nth-child(4) { animation-delay: 0.4s; }
+
+        .step-number {
+            background: #808BC5;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-right: 15px;
+            flex-shrink: 0;
+            transition: all 0.3s ease-out;
+        }
+
+        .flujo-step:hover .step-number {
+            background: #1D1D1B;
+            transform: scale(1.1);
+        }
+
+        .step-content {
+            flex-grow: 1;
+            padding: 12px 15px;
+            background: #f5f1eb;
+            border-left: 3px solid #808BC5;
+            transition: all 0.3s ease-out;
+        }
+
+        .flujo-step:hover .step-content {
+            background: #EBE4DA;
+            transform: translateX(5px);
+        }
+
+        .section p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #1D1D1B;
+            margin-bottom: 15px;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .section {
+                padding: 25px;
+            }
+
+            .flujo-step {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .step-number {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>User Persona y Flujos</h1>
+            <a href="index.html" class="back-btn">← Volver</a>
+        </header>
+
+        <div class="content">
+            <div class="section">
+                <h2>👥 User Personas</h2>
+                <p>Se han identificado dos perfiles principales de usuarios del proyecto, resultado de investigación y análisis de necesidades:</p>
+
+                <div class="persona-card">
+                    <div class="persona-header">🎨 Profesional Creativo Independiente - Richard</div>
+                    <div class="persona-detail"><span class="detail-label">Edad:</span> 27-30 años</div>
+                    <div class="persona-detail"><span class="detail-label">Profesión:</span> Arquitecto independiente y Músico</div>
+                    <div class="persona-detail"><span class="detail-label">Generación:</span> Milenial</div>
+                    <div class="persona-detail"><span class="detail-label">Ubicación:</span> Bolivia - Cochabamba - Zona norte</div>
+                    <div class="persona-detail"><span class="detail-label">Objetivo:</span> Crear una identidad visual profesional y generar reconocimiento mediante presencia en redes sociales</div>
+                    <div class="persona-detail"><span class="detail-label">Contexto:</span> Es un profesional independiente que busca diferenciarse en el mercado creativo</div>
+                    <div class="persona-detail"><span class="detail-label">Dolor Principal:</span> Falta de interacción en redes sociales y desenganche con su público objetivo</div>
+                    <div class="persona-detail"><span class="detail-label">Dispositivos:</span> PC durante el día, iPhone/Android para mensajería</div>
+                    <div class="persona-detail"><span class="detail-label">Preferencias:</span> Tendencias pop, arte, cine y música contemporánea</div>
+                </div>
+
+                <div class="persona-card">
+                    <div class="persona-header">📸 Empresaria Creativa - Valeria</div>
+                    <div class="persona-detail"><span class="detail-label">Edad:</span> 30-34 años</div>
+                    <div class="persona-detail"><span class="detail-label">Profesión:</span> Fotógrafa y Directora de Empresa</div>
+                    <div class="persona-detail"><span class="detail-label">Generación:</span> Milenial</div>
+                    <div class="persona-detail"><span class="detail-label">Ubicación:</span> Bolivia - Cochabamba - Zona norte</div>
+                    <div class="persona-detail"><span class="detail-label">Objetivo:</span> Reposicionar su empresa con contenido visual de profundidad y transformación</div>
+                    <div class="persona-detail"><span class="detail-label">Contexto:</span> Lidera el reposicionamiento de una empresa mediana, busca algo analítico, fresco y transformador</div>
+                    <div class="persona-detail"><span class="detail-label">Dolor Principal:</span> Falta de profundidad en portfolios actuales, necesita diseños que reflejen valor real</div>
+                    <div class="persona-detail"><span class="detail-label">Dispositivos:</span> Laptop durante el día, iPhone/Android para revisiones ráp</div>
+                    <div class="persona-detail"><span class="detail-label">Preferencias:</span> Fotografía artística, moda, tendencias visuales y arte contemporáneo</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>🗺️ User Journey - Profesional Creativo</h2>
+                <p>Camino de interacción de un profesional creativo independiente a través del sitio:</p>
+
+                <div class="flujo-container">
+                    <div class="flujo-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content"><strong>Descubrimiento (Index/Panel)</strong> - Llega al sitio buscando soluciones de diseño y presencia digital para su marca personal</div>
+                    </div>
+
+                    <div class="flujo-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content"><strong>Evaluación del Equipo (Sobre Nosotros)</strong> - Revisa el equipo para conocer experiencia y creatividad disponible</div>
+                    </div>
+
+                    <div class="flujo-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content"><strong>Análisis de Trabajos Anteriores (Nuestros Trabajos)</strong> - Explora portfolios similares en el sector creativo</div>
+                    </div>
+
+                    <div class="flujo-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content"><strong>Revisión de Servicios (Servicios)</strong> - Verifica qué servicios se ofrecen (branding, identidad visual, redes)</div>
+                    </div>
+
+                    <div class="flujo-step">
+                        <div class="step-number">5</div>
+                        <div class="step-content"><strong>Contacto (Contactos)</strong> - Solicita cotización y propuesta personalizada</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>🗺️ User Journey - Empresaria Creativa</h2>
+                <p>Camino de interacción de una empresaria que busca reposicionamiento corporativo:</p>
+
+                <div class="flujo-container">
+                    <div class="flujo-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content"><strong>Búsqueda de Agencia Especializada (Index/Panel)</strong> - Accede al sitio buscando agencia con experiencia en reposicionamiento empresarial</div>
+                    </div>
+
+                    <div class="flujo-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content"><strong>Evaluación de Experiencia (Sobre Nosotros)</strong> - Analiza trayectoria y casos de empresas similares</div>
+                    </div>
+
+                    <div class="flujo-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content"><strong>Revisión de Casos de Éxito (Nuestros Trabajos)</strong> - Busca proyectos de reposicionamiento empresarial similares al suyo</div>
+                    </div>
+
+                    <div class="flujo-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content"><strong>Consulta de Servicios (Servicios)</strong> - Verifica soluciones completas de branding y estrategia visual</div>
+                    </div>
+
+                    <div class="flujo-step">
+                        <div class="step-number">5</div>
+                        <div class="step-content"><strong>Resolución de Dudas (Preguntas Frecuentes)</strong> - Consulta preguntas sobre procesos, tiempos y presupuestos</div>
+                    </div>
+
+                    <div class="flujo-step">
+                        <div class="step-number">6</div>
+                        <div class="step-content"><strong>Solicitud de Propuesta (Contactos)</strong> - Inicia contacto formal para cotización ejecutiva</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

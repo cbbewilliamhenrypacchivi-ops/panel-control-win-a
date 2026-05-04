@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informe WPO y WCAG</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            background: linear-gradient(135deg, #EBE4DA 0%, #f5f1eb 100%);
+            color: #1D1D1B;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 50px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1D1D1B 0%, #808BC5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .back-btn {
+            background: white;
+            border: 2px solid #1D1D1B;
+            padding: 12px 24px;
+            cursor: pointer;
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.4s ease-out;
+            text-decoration: none;
+            color: #1D1D1B;
+        }
+
+        .back-btn:hover {
+            background: #808BC5;
+            border-color: #808BC5;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(128, 139, 197, 0.3);
+        }
+
+        .content {
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        .section {
+            background: white;
+            border: 2px solid #1D1D1B;
+            padding: 40px;
+            margin-bottom: 30px;
+            transition: all 0.4s ease-out;
+        }
+
+        .section:hover {
+            border-color: #808BC5;
+            box-shadow: 0 10px 30px rgba(128, 139, 197, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #808BC5;
+            font-weight: 700;
+        }
+
+        .section p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #1D1D1B;
+            margin-bottom: 15px;
+        }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .metric-card {
+            background: linear-gradient(135deg, #808BC5 0%, #5f6b9f 100%);
+            color: white;
+            padding: 25px;
+            border: 2px solid #1D1D1B;
+            text-align: center;
+            transition: all 0.4s ease-out;
+            animation: fadeInUp 0.6s ease-out backwards;
+        }
+
+        .metric-card:nth-child(1) { animation-delay: 0.1s; }
+        .metric-card:nth-child(2) { animation-delay: 0.2s; }
+        .metric-card:nth-child(3) { animation-delay: 0.3s; }
+        .metric-card:nth-child(4) { animation-delay: 0.4s; }
+
+        .metric-card:hover {
+            transform: scale(1.08);
+            box-shadow: 0 15px 40px rgba(128, 139, 197, 0.4);
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .metric-label {
+            font-size: 0.95rem;
+            opacity: 0.95;
+            letter-spacing: 0.5px;
+        }
+
+        .checklist {
+            margin-top: 25px;
+        }
+
+        .check-item {
+            background: #f5f1eb;
+            border-left: 4px solid #808BC5;
+            padding: 15px;
+            margin: 12px 0;
+            transition: all 0.3s ease-out;
+            animation: fadeInLeft 0.6s ease-out backwards;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .check-item:nth-child(1) { animation-delay: 0.1s; }
+        .check-item:nth-child(2) { animation-delay: 0.2s; }
+        .check-item:nth-child(3) { animation-delay: 0.3s; }
+        .check-item:nth-child(4) { animation-delay: 0.4s; }
+        .check-item:nth-child(5) { animation-delay: 0.5s; }
+        .check-item:nth-child(6) { animation-delay: 0.6s; }
+
+        .check-item:hover {
+            background: #EBE4DA;
+            transform: translateX(8px);
+            border-left-color: #1D1D1B;
+        }
+
+        .check-icon {
+            color: #808BC5;
+            font-weight: 700;
+            flex-shrink: 0;
+            font-size: 1.2rem;
+        }
+
+        .check-content {
+            flex-grow: 1;
+        }
+
+        .check-title {
+            font-weight: 700;
+            color: #1D1D1B;
+            margin-bottom: 3px;
+        }
+
+        .check-desc {
+            font-size: 0.95rem;
+            color: #808BC5;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .section {
+                padding: 25px;
+            }
+
+            .metric-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .metric-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .report-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+        }
+
+        .report-thumb {
+            width: 100%;
+            height: auto;
+            border: 2px solid #1D1D1B;
+            border-radius: 12px;
+            cursor: zoom-in;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            background: #fff;
+        }
+
+        .report-thumb:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 30px rgba(128, 139, 197, 0.25);
+        }
+
+        .access-content h3 {
+            margin: 18px 0 8px;
+            font-size: 1.15rem;
+            color: #1D1D1B;
+        }
+
+        .access-content p {
+            line-height: 1.75;
+            margin-bottom: 10px;
+        }
+
+        /* Modal de imagen (zoom) */
+        .img-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            z-index: 9999;
+        }
+
+        .img-modal.is-open {
+            display: flex;
+        }
+
+        .img-modal__dialog {
+            position: relative;
+            width: min(1100px, 100%);
+            max-height: 90vh;
+            background: #f5f1eb;
+            border: 2px solid #1D1D1B;
+            border-radius: 14px;
+            overflow: hidden;
+        }
+
+        .img-modal__bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 10px 12px;
+            background: #EBE4DA;
+            border-bottom: 2px solid #1D1D1B;
+        }
+
+        .img-modal__title {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #1D1D1B;
+        }
+
+        .img-modal__actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .img-modal__btn {
+            border: 2px solid #1D1D1B;
+            background: #fff;
+            color: #1D1D1B;
+            font-weight: 700;
+            border-radius: 10px;
+            padding: 6px 10px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .img-modal__btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .img-modal__viewport {
+            padding: 14px;
+            overflow: auto;
+            max-height: calc(90vh - 56px);
+            background: #f5f1eb;
+        }
+
+        .img-modal__img {
+            display: block;
+            width: 100%;
+            height: auto;
+            transform-origin: top left;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Informe WPO y WCAG</h1>
+            <a href="index.html" class="back-btn">← Volver</a>
+        </header>
+
+        <div class="content">
+            <div class="section">
+                <h2>📊 Métricas de Rendimiento (WPO)</h2>
+                <p>Web Performance Optimization - Optimización del rendimiento web para máxima velocidad y eficiencia.</p>
+
+                <div class="metric-grid">
+                    <div class="metric-card">
+                        <div class="metric-value">95</div>
+                        <div class="metric-label">Performance Score</div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-value">1.2s</div>
+                        <div class="metric-label">Tiempo de Carga</div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-value">89</div>
+                        <div class="metric-label">SEO Score</div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-value">92</div>
+                        <div class="metric-label">Best Practices</div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-value">92</div>
+                        <div class="metric-label">Promedio (Scores)</div>
+                    </div>
+                </div>
+
+                <div class="report-gallery" style="margin-top: 25px;">
+                    <img class="report-thumb zoomable" src="img/wgac1.jpg" alt="WCAG 1" data-modal-title="WCAG 1">
+                    <img class="report-thumb zoomable" src="img/wgac2.jpg" alt="WCAG 2" data-modal-title="WCAG 2">
+                    <img class="report-thumb zoomable" src="img/wgac3.jpg" alt="WCAG 3" data-modal-title="WCAG 3">
+                    <img class="report-thumb zoomable" src="img/wpo1.jpg" alt="WPO 1" data-modal-title="WPO 1">
+                    <img class="report-thumb zoomable" src="img/wpo2.jpg" alt="WPO 2" data-modal-title="WPO 2">
+                    <img class="report-thumb zoomable" src="img/wpo3.jpg" alt="WPO 3" data-modal-title="WPO 3">
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>♿ Estándares de Accesibilidad (WCAG)</h2>
+                <div class="access-content">
+                    <h3>1. Introducción</h3>
+                    <p>En el desarrollo de interfaces digitales, la optimización de recursos pesados constituye un factor clave para garantizar una experiencia de usuario eficiente, fluida y accesible. En el caso de WIN.A, cuya propuesta se basa en una fuerte carga visual y conceptual, resulta fundamental implementar estrategias que permitan reducir los tiempos de carga sin comprometer la calidad estética ni la coherencia de la identidad de marca.</p>
+                    <p>Asimismo, al tratarse de un proyecto desarrollado en equipo, se incorporarán herramientas colaborativas que faciliten la gestión, organización y acceso a los recursos digitales.</p>
+
+                    <h3>2. Optimización de imágenes</h3>
+                    <p>Las imágenes representan uno de los principales factores que influyen en el rendimiento de un sitio web. Por ello, se establecerá una resolución máxima de exportación de 1920 píxeles de ancho para pantallas de alta resolución, junto con versiones adaptativas para dispositivos móviles.</p>
+                    <p>Se priorizará el uso de formatos modernos como WebP, los cuales permiten una mayor compresión en comparación con formatos tradicionales como JPG o PNG, reduciendo significativamente el peso de los archivos sin afectar la calidad visual.</p>
+
+                    <h3>3. Uso de gráficos vectoriales (SVG)</h3>
+                    <p>Para elementos gráficos esenciales como el logotipo y los iconos de navegación, se empleará el formato SVG (Scalable Vector Graphics). Este formato garantiza una alta calidad visual en diferentes resoluciones y dispositivos, además de ser liviano y eficiente para su carga en entornos digitales.</p>
+
+                    <h3>4. Compresión y optimización de archivos</h3>
+                    <p>Se implementarán procesos de compresión de imágenes, utilizando herramientas que reduzcan el peso de los archivos sin comprometer su calidad perceptual.</p>
+                    <p>De manera complementaria, se aplicará la minificación de archivos CSS y JavaScript, eliminando elementos innecesarios como espacios y comentarios, lo que contribuye a mejorar el rendimiento general del sitio web.</p>
+
+                    <h3>5. Optimización de contenido multimedia</h3>
+                    <p>En relación con los recursos audiovisuales, se evitará la carga directa de archivos pesados dentro del sitio web. En su lugar, se optará por la incrustación (embed) de contenido multimedia desde plataformas externas, lo que reduce el consumo de recursos del servidor.</p>
+                    <p>Adicionalmente, se aplicará la técnica de lazy loading (carga diferida), permitiendo que las imágenes y elementos pesados se carguen únicamente cuando el usuario los visualiza en pantalla, optimizando así el tiempo de carga inicial.</p>
+
+                    <h3>6. Gestión de recursos y trabajo colaborativo</h3>
+                    <p>Para la organización y manejo de los recursos digitales, se utilizará la plataforma Google Drive, donde se almacenarán todos los archivos del proyecto, incluyendo imágenes, elementos gráficos, documentos y recursos multimedia.</p>
+                    <p>En lugar de cargar archivos pesados directamente en la interfaz web, se priorizará el uso de enlaces externos (links) provenientes de esta plataforma, lo que permitirá reducir el peso del sitio y facilitar la actualización de contenidos sin afectar la estructura principal.</p>
+                    <p>Asimismo, el uso de Google Drive favorecerá el trabajo colaborativo, permitiendo que todos los integrantes del equipo accedan, editen y gestionen los recursos en tiempo real, optimizando la coordinación y el flujo de trabajo del proyecto.</p>
+
+                    <h3>7. Conclusión</h3>
+                    <p>La implementación de estrategias de optimización en la interfaz web de WIN.A permite establecer un equilibrio entre calidad visual, eficiencia técnica y organización del trabajo en equipo. El uso de herramientas colaborativas, junto con la correcta gestión de recursos digitales, contribuye a una experiencia de usuario más fluida y a un desarrollo más estructurado del proyecto.</p>
+                    <p>De esta manera, la optimización no solo se entiende como un aspecto técnico, sino también como un elemento estratégico que fortalece tanto el producto final como la dinámica de trabajo del equipo.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- Modal de imagen -->
+    <div class="img-modal" id="imgModal" aria-hidden="true">
+        <div class="img-modal__dialog" role="dialog" aria-modal="true" aria-label="Vista ampliada de imagen">
+            <div class="img-modal__bar">
+                <div class="img-modal__title" id="imgModalTitle">Imagen</div>
+                <div class="img-modal__actions">
+                    <button type="button" class="img-modal__btn" id="imgZoomOut" aria-label="Disminuir zoom">-</button>
+                    <button type="button" class="img-modal__btn" id="imgZoomReset" aria-label="Restablecer zoom">100%</button>
+                    <button type="button" class="img-modal__btn" id="imgZoomIn" aria-label="Aumentar zoom">+</button>
+                    <button type="button" class="img-modal__btn" id="imgModalClose" aria-label="Cerrar">Cerrar</button>
+                </div>
+            </div>
+            <div class="img-modal__viewport" id="imgModalViewport">
+                <img class="img-modal__img" id="imgModalImg" alt="">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            const modal = document.getElementById('imgModal');
+            const modalImg = document.getElementById('imgModalImg');
+            const modalTitle = document.getElementById('imgModalTitle');
+            const viewport = document.getElementById('imgModalViewport');
+            const btnClose = document.getElementById('imgModalClose');
+            const btnIn = document.getElementById('imgZoomIn');
+            const btnOut = document.getElementById('imgZoomOut');
+            const btnReset = document.getElementById('imgZoomReset');
+
+            let zoom = 1;
+            const ZOOM_MIN = 1;
+            const ZOOM_MAX = 3;
+            const ZOOM_STEP = 0.2;
+
+            function applyZoom() {
+                modalImg.style.transform = `scale(${zoom})`;
+                btnReset.textContent = `${Math.round(zoom * 100)}%`;
+            }
+
+            function openModal(imgEl) {
+                const src = imgEl.getAttribute('data-full-src') || imgEl.getAttribute('src');
+                const title = imgEl.getAttribute('data-modal-title') || imgEl.getAttribute('alt') || 'Imagen';
+
+                modalImg.src = src;
+                modalImg.alt = imgEl.getAttribute('alt') || 'Imagen ampliada';
+                modalTitle.textContent = title;
+
+                zoom = 1.6; /* escala inicial para ver detalles */
+                applyZoom();
+                viewport.scrollTop = 0;
+                viewport.scrollLeft = 0;
+
+                modal.classList.add('is-open');
+                modal.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeModal() {
+                modal.classList.remove('is-open');
+                modal.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+                modalImg.removeAttribute('src');
+            }
+
+            document.querySelectorAll('img.zoomable').forEach((img) => {
+                img.addEventListener('click', () => openModal(img));
+            });
+
+            btnClose.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
+            });
+
+            btnIn.addEventListener('click', () => {
+                zoom = Math.min(ZOOM_MAX, +(zoom + ZOOM_STEP).toFixed(2));
+                applyZoom();
+            });
+
+            btnOut.addEventListener('click', () => {
+                zoom = Math.max(ZOOM_MIN, +(zoom - ZOOM_STEP).toFixed(2));
+                applyZoom();
+            });
+
+            btnReset.addEventListener('click', () => {
+                zoom = 1;
+                applyZoom();
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+            });
+        })();
+    </script>
+</body>
+</html>

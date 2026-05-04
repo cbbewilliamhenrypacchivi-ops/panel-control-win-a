@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Control - Proyecto Integrador</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            background: linear-gradient(135deg, #EBE4DA 0%, #f5f1eb 100%);
+            color: #1D1D1B;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #1D1D1B 0%, #808BC5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #808BC5;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: white;
+            border: 2px solid #1D1D1B;
+            padding: 40px;
+            cursor: pointer;
+            text-decoration: none;
+            color: #1D1D1B;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 250px;
+            text-align: center;
+            animation: fadeInUp 0.6s ease-out backwards;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.2s; }
+        .card:nth-child(3) { animation-delay: 0.3s; }
+        .card:nth-child(4) { animation-delay: 0.4s; }
+        .card:nth-child(5) { animation-delay: 0.5s; }
+        .card:nth-child(6) { animation-delay: 0.6s; }
+        .card:nth-child(7) { animation-delay: 0.7s; }
+        .card:nth-child(8) { animation-delay: 0.8s; }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: #808BC5;
+            z-index: -1;
+            transition: left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .card:hover::before {
+            left: 0;
+        }
+
+        .card:hover {
+            border-color: #808BC5;
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(128, 139, 197, 0.25);
+            color: white;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            position: relative;
+            z-index: 1;
+            transition: all 0.4s ease-out;
+        }
+
+        .card:hover .card-title {
+            transform: scale(1.05);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            opacity: 0.7;
+            transition: all 0.4s ease-out;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card:hover .card-icon {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        footer {
+            text-align: center;
+            color: #808BC5;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            animation: fadeInUp 0.8s ease-out 1s backwards;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .grid-container {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 20px;
+            }
+
+            .card {
+                padding: 30px;
+                min-height: 200px;
+            }
+
+            .card-title {
+                font-size: 1.2rem;
+            }
+
+            .card-icon {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 20px 10px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .grid-container {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .card {
+                padding: 25px;
+                min-height: 150px;
+            }
+
+            .card-title {
+                font-size: 1rem;
+            }
+
+            .card-icon {
+                font-size: 2rem;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>PANEL DE CONTROL</h1>
+            <p class="subtitle">Proyecto Integrador II - HITO 3</p>
+        </header>
+
+        <div class="grid-container">
+            <a href="identidad-visual.html" class="card">
+                <div class="card-icon">🎨</div>
+                <div class="card-title">Identidad Visual</div>
+            </a>
+
+            <a href="mapa-del-sitio.html" class="card">
+                <div class="card-icon">🗺️</div>
+                <div class="card-title">Mapa del Sitio Web</div>
+            </a>
+
+            <a href="user-persona.html" class="card">
+                <div class="card-icon">👥</div>
+                <div class="card-title">User Persona y Flujos</div>
+            </a>
+
+            <a href="diagramacion.html" class="card">
+                <div class="card-icon">📐</div>
+                <div class="card-title">Diagramación y Maquetación</div>
+            </a>
+
+            <a href="adaptabilidad.html" class="card">
+                <div class="card-icon">📱</div>
+                <div class="card-title">Adaptabilidad</div>
+            </a>
+
+            <a href="https://portfolywin-a.netlify.app/" class="card" target="_blank">
+                <div class="card-icon">👨‍💼</div>
+                <div class="card-title">Página Grupal</div>
+            </a>
+
+            <a href="informe-wpo-wcag.html" class="card">
+                <div class="card-icon">📊</div>
+                <div class="card-title">Informe WPO y WCAG</div>
+            </a>
+
+            <a href="integrantes.html" class="card">
+                <div class="card-icon">👨‍👩‍👧‍👦</div>
+                <div class="card-title">Integrantes</div>
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 Proyecto Integrador II - UNIFRANZ | Todos los derechos reservados</p>
+    </footer>
+</body>
+</html>
