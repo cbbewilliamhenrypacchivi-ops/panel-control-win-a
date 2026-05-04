@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Misión y Visión</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            background: linear-gradient(135deg, #EBE4DA 0%, #f5f1eb 100%);
+            color: #1D1D1B;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 50px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1D1D1B 0%, #808BC5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .back-btn {
+            background: white;
+            border: 2px solid #1D1D1B;
+            padding: 12px 24px;
+            cursor: pointer;
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.4s ease-out;
+            text-decoration: none;
+            color: #1D1D1B;
+        }
+
+        .back-btn:hover {
+            background: #808BC5;
+            border-color: #808BC5;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(128, 139, 197, 0.3);
+        }
+
+        .content {
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        .section {
+            background: white;
+            border: 2px solid #1D1D1B;
+            padding: 40px;
+            margin-bottom: 30px;
+            transition: all 0.4s ease-out;
+        }
+
+        .section:hover {
+            border-color: #808BC5;
+            box-shadow: 0 10px 30px rgba(128, 139, 197, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #808BC5;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        .section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #1D1D1B;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .section {
+                padding: 25px;
+            }
+
+            .section p {
+                font-size: 1.05rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Misión y Visión</h1>
+            <a href="index.html" class="back-btn">← Volver</a>
+        </header>
+
+        <div class="content">
+            <div class="section">
+                <h2>🎯 MISIÓN</h2>
+                <p>
+                    Ofrecer una experiencia completa y personalizada para nuestros clientes, ofreciendo un libre intercambio de ideas con el fin de plantear soluciones visuales efectivas y llamativas. Para nosotros es muy importante una comprensión total del cliente y sus objetivos, hacer un análisis profundo que logre resultados óptimos.
+                </p>
+            </div>
+
+            <div class="section">
+                <h2>🔭 VISIÓN</h2>
+                <p>
+                    Convertirnos en una agencia de diseño que trascienda lo convencional, creando conexiones genuinas entre ideas, emociones y propósito; inspirando, transformando y dejando huella en cada proyecto junto a nuestros clientes.
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
